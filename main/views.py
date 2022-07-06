@@ -1,19 +1,24 @@
-import django
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
     return render(request,'index.html')
 def register(request):
     if request.method == 'POST':
-        u = User()
-        u.username = request.POST['username']
-        u.email = request.POST['email']
-        u.password = request.POST['password']
-        u.save()
+        try:
+            u = User()
+            u.username = request.POST['username']
+            u.email = request.POST['email']
+            u.password = request.POST['password']
+            u.save()
+            messages.add_message(request, messages.SUCCESS, 'Registeration successful')
+        except Exception:
+            messages.add_message(request, messages.ERROR, 'A issue occur during registering')
+    else:
+        messages.add_message(request, messages.ERROR, '')
         # auth_user
     return render(request,'register.html')
 
@@ -31,4 +36,10 @@ def login(request):
             print('passed')
         else:
             print('failed')
-    return render(request,'login.html')
+    else:
+        return render(request,'login.html')
+# messages.debug(request, '%s SQL statements were executed.' % count)
+# messages.info(request, 'Three credits remain in your account.')
+# messages.success(request, 'Profile details updated.')
+# messages.warning(request, 'Your account expires in three days.')
+# messages.error(request, 'Document deleted.')
