@@ -1,0 +1,3 @@
+2022-06-30 20:42:09,339 - INFO - Admin logged in
+2022-06-30 20:42:09,340 - ERROR - name 'x' is not defined
+2022-06-30 20:42:09,340 - WARNING - name 'x' is not defined
