@@ -18,9 +18,26 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#"><h5>Library Management System</h5></a>
             </div>
-            <div class="nav navbar-nav">
-                <a href="/login"><button class="btn btn-primary mb-3">Login</button></a>
-            </div>
+            {% if user.is_authenticated  %}
+                <div class="nav navbar-nav">
+                    {% comment %} <a href="/login"><button class="btn btn-primary mb-3">Login</button></a> {% endcomment %}
+                    <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{ user }}
+                        </a>
+                      
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <li><a class="dropdown-item" href="#">info</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                      </div>
+                </div>
+            {% else %}
+                <div class="nav navbar-nav">
+                    <a href="/login"><button class="btn btn-primary mb-3">Login</button></a>
+                </div>
+            {% endif %}
         </div>
     </nav>
     <div class="container">

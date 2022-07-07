@@ -23,7 +23,7 @@ def register(request):
         # auth_user
     return render(request,'register.html')
 
-def login(request):
+def login_user(request):
     # u = User.objects.get(username = 'Aaris')
     # # u.get_username("1")
     # u.set_password('12345')
@@ -34,10 +34,11 @@ def login(request):
         user = authenticate(request, username=uname, password=pwd)
         print(user)
         if user is not None:
-            messages.add_message(request, messages.SUCCESS, 'Registeration successful')
+            login(request, user)
+            return redirect('home')
         else:
             messages.add_message(request, messages.ERROR, 'Login invalid please check username or passowrd')
-        return render(request,'login.html')
+            return render(request,'login.html')
     else:
         messages.add_message(request, messages.ERROR, '')
         return render(request,'login.html')
@@ -46,3 +47,7 @@ def login(request):
 # messages.success(request, 'Profile details updated.')
 # messages.warning(request, 'Your account expires in three days.')
 # messages.error(request, 'Document deleted.')
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')
