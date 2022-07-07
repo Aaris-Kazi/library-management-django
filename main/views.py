@@ -17,6 +17,7 @@ def register(request):
             messages.add_message(request, messages.SUCCESS, 'Registeration successful')
         except Exception:
             messages.add_message(request, messages.ERROR, 'A issue occur during registering')
+        return render(request,'register.html')
     else:
         messages.add_message(request, messages.ERROR, '')
         # auth_user
@@ -33,10 +34,12 @@ def login(request):
         user = authenticate(request, username=uname, password=pwd)
         print(user)
         if user is not None:
-            print('passed')
+            messages.add_message(request, messages.SUCCESS, 'Registeration successful')
         else:
-            print('failed')
+            messages.add_message(request, messages.ERROR, 'Login invalid please check username or passowrd')
+        return render(request,'login.html')
     else:
+        messages.add_message(request, messages.ERROR, '')
         return render(request,'login.html')
 # messages.debug(request, '%s SQL statements were executed.' % count)
 # messages.info(request, 'Three credits remain in your account.')
