@@ -41,37 +41,51 @@
         </div>
     </nav>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <blockquote class="blockquote">
-                    Sr no
-                </blockquote>
+        {% if user.is_authenticated %}
+        
+            <div class="row">
+                <div class="col">
+                    <blockquote class="blockquote">
+                        NAME
+                    </blockquote>
+                </div>
+                <div class="col">
+                    <blockquote class="blockquote">
+                        AVAILABILITY
+                    </blockquote>
+                </div>
+                <div class="col">
+                    <blockquote class="blockquote">
+                        ACTION
+                    </blockquote>
+                </div>
             </div>
-            <div class="col">
-                <blockquote class="blockquote">
-                    TITLE
-                </blockquote>
+            <div class="row">
+                <div class="col"><input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Let start C"></div>
+                <div class="col"><input type="text" class="form-control" id="exampleFormControlInput1" placeholder="AVAILABLE"></div>
+                <div class="col"><input class="btn btn-primary mb-3" type="button" value="ADD"></div>
             </div>
-            <div class="col">
-                <blockquote class="blockquote">
-                    AVAIABILITY
-                </blockquote>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">1</div>
-            <div class="col">Reema Thareja</div>
-            <div class="col">
-                <input class="btn btn-primary mb-3" type="button" value="Available">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">1</div>
-            <div class="col">Reema Thareja</div>
-            <div class="col">
-                <input class="btn btn-danger" type="button" value="Not Available">
-            </div>
-        </div>
+        {% endif %}
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">AVAILABILITY</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Reema Thareja</td>
+                <td><input class="btn btn-danger mb-3" type="button" value="NOT AVAILABLE"></td>
+              </tr>
+                <th scope="row">2</th>
+                <td>LET'S C</td>
+                <td><input class="btn btn-primary mb-3" type="button" value="AVAILABLE"></td>
+              </tr>
+            </tbody>
+          </table>
     </div>
 </body>
 </html>
