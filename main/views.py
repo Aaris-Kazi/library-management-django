@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .models import Books
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    b = Books.objects.all()
+    print(b)
+    return render(request,'index.html', {'books': b})
 def register(request):
     if request.method == 'POST':
         try:
@@ -51,3 +54,12 @@ def login_user(request):
 def user_logout(request):
     logout(request)
     return redirect('home')
+
+def add_book(request):
+    if request.method == 'POST':
+        b = Books()
+        b.book_name = request.POST['b_name']
+        b.status = str(request.POST['avail']).upper()
+        b.save()
+    return redirect('home')
+    

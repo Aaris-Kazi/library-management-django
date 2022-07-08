@@ -42,29 +42,31 @@
     </nav>
     <div class="container">
         {% if user.is_authenticated %}
-        
-            <div class="row">
-                <div class="col">
-                    <blockquote class="blockquote">
-                        NAME
-                    </blockquote>
+            <form action="{% url 'add_books' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col">
+                        <blockquote class="blockquote">
+                            NAME
+                        </blockquote>
+                    </div>
+                    <div class="col">
+                        <blockquote class="blockquote">
+                            AVAILABILITY
+                        </blockquote>
+                    </div>
+                    <div class="col">
+                        <blockquote class="blockquote">
+                            ACTION
+                        </blockquote>
+                    </div>
                 </div>
-                <div class="col">
-                    <blockquote class="blockquote">
-                        AVAILABILITY
-                    </blockquote>
+                <div class="row">
+                    <div class="col"><input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Let start C" name='b_name'></div>
+                    <div class="col"><input type="text" class="form-control" id="exampleFormControlInput1" placeholder="AVAILABLE" name='avail'></div>
+                    <div class="col"><input class="btn btn-primary mb-3" type="submit" value="ADD"></div>
                 </div>
-                <div class="col">
-                    <blockquote class="blockquote">
-                        ACTION
-                    </blockquote>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col"><input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Let start C"></div>
-                <div class="col"><input type="text" class="form-control" id="exampleFormControlInput1" placeholder="AVAILABLE"></div>
-                <div class="col"><input class="btn btn-primary mb-3" type="button" value="ADD"></div>
-            </div>
+            </form>
         {% endif %}
         <table class="table table-striped">
             <thead>
@@ -84,6 +86,15 @@
                 <td>LET'S C</td>
                 <td><input class="btn btn-primary mb-3" type="button" value="AVAILABLE"></td>
               </tr>
+              {% count = 0 %}
+              {% for i in books %}
+                </tr>
+                {% count +=1 %}
+                <th scope="row">{ count }</th>
+                <td>LET'S C</td>
+                <td><input class="btn btn-primary mb-3" type="button" value="AVAILABLE"></td>
+                </tr>
+              {% endfor %}
             </tbody>
           </table>
     </div>
