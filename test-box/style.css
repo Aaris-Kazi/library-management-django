@@ -31,3 +31,9 @@
     width: 21%;
     background-color: grey;
 }
+.dropdown-menu{
+    position: absolute;
+}
+ul{
+    position: absolute;
+}
