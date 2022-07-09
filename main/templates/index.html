@@ -81,7 +81,11 @@
                 </tr>
                 <th scope="row">{{ i.id }}</th>
                 <td>{{ i.book_name }}</td>
-                <td><input class="btn btn-primary mb-3" type="button" value="{{ i.status }}"></td>
+                {% if i.status == 'AVAILABLE' %}
+                    <td><input class="btn btn-primary mb-3" type="button" value="    {{ i.status }}    "></td>
+                {% else %}
+                    <td><input class="btn btn-danger mb-3" type="button" value="{{ i.status }}"></td>
+                {% endif %}
                 </tr>
               {% endfor %}
             </tbody>

@@ -7,7 +7,7 @@ from .models import Books
 
 def index(request):
     b = Books.objects.all()
-    print(b)
+    # print(b)
     return render(request,'index.html', {'books': b})
 def register(request):
     if request.method == 'POST':
