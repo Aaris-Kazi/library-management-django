@@ -77,22 +77,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Reema Thareja</td>
-                <td><input class="btn btn-danger mb-3" type="button" value="NOT AVAILABLE"></td>
-              </tr>
-                <th scope="row">2</th>
-                <td>LET'S C</td>
-                <td><input class="btn btn-primary mb-3" type="button" value="AVAILABLE"></td>
-              </tr>
-              {% count = 0 %}
               {% for i in books %}
                 </tr>
-                {% count +=1 %}
-                <th scope="row">{ count }</th>
-                <td>LET'S C</td>
-                <td><input class="btn btn-primary mb-3" type="button" value="AVAILABLE"></td>
+                <th scope="row">{{ i.id }}</th>
+                <td>{{ i.book_name }}</td>
+                <td><input class="btn btn-primary mb-3" type="button" value="{{ i.status }}"></td>
                 </tr>
               {% endfor %}
             </tbody>
