@@ -62,4 +62,9 @@ def add_book(request):
         b.status = str(request.POST['avail']).upper()
         b.save()
     return redirect('home')
+
+def delete_book(request, book_id):
+    b = Books.objects.get(pk=book_id)
+    b.delete()
+    return redirect('home')
     

@@ -74,6 +74,9 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">AVAILABILITY</th>
+                {% if user.is_authenticated %} 
+                    <th scope="col">ACTIONS</th>
+                {% endif %}
               </tr>
             </thead>
             <tbody>
@@ -81,11 +84,19 @@
                 </tr>
                 <th scope="row">{{ i.id }}</th>
                 <td>{{ i.book_name }}</td>
-                {% if i.status == 'AVAILABLE' %}
-                    <td><input class="btn btn-primary mb-3" type="button" value="    {{ i.status }}    "></td>
+                {% if user.is_authenticated %}
+                    <td><input class="btn btn-secondary mb-3" type="button" value="{{ i.status }}"></td>
+                    <td>
+                        <a href="{% url 'del_books' i.id %}"><input class="btn btn-danger mb-3" type="button" value="DELETE" name='delete'></a>
+                    </td>
                 {% else %}
-                    <td><input class="btn btn-danger mb-3" type="button" value="{{ i.status }}"></td>
+                    {% if i.status == 'AVAILABLE' %}
+                        <td><input class="btn btn-primary mb-3" type="button" value="    {{ i.status }}    "></td>
+                    {% else %}
+                        <td><input class="btn btn-danger mb-3" type="button" value="{{ i.status }}"></td>
+                    {% endif %}
                 {% endif %}
+                
                 </tr>
               {% endfor %}
             </tbody>
