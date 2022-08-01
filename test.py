@@ -1,30 +1,46 @@
-# from distutils.log import error
-# logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
-# logging.debug('This message should go to the log file')
-# logging.info('So should this')
-# logging.warning('And this, too')
-# logging.error('And non-ASCII stuff, too, like Øresund and Malmö')
-# logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
-# logging.warning('This will get logged to a file')
+# import re
+# import subprocess
+# device_re = re.compile(b"Bus\s+(?P<bus>\d+)\s+Device\s+(?P<device>\d+).+ID\s(?P<id>\w+:\w+)\s(?P<tag>.+)$", re.I)
+# df = subprocess.check_output("lsusb")
+# devices = []
+# for i in df.split(b'\n'):
+#     if i:
+#         info = device_re.match(i)
+#         if info:
+#             dinfo = info.groupdict()
+#             dinfo['device'] = '/dev/bus/usb/%s/%s' % (dinfo.pop('bus'), dinfo.pop('device'))
+#             devices.append(dinfo)
+            
+# print(devices)
+# import win32com.client
 
-# n = int(input())
+# wmi = win32com.client.GetObject ("winmgmts:")
+# for usb in wmi.InstancesOf ("Win32_USBHub"):
+#     print(usb.DeviceID)
 
+# USB\VID_1BCF&PID_2A02\01.00.00
+# USB\ROOT_HUB30\4&29E0B25B&0&0
+# USB\ROOT_HUB30\4&365005&0&0
 
-# for i in range(1,n+1):
-#     if i %2 ==0:
-#         pass
-#     else:
-#         n = i+2
-        
-# print(n*n)
-import logging
-logging.basicConfig(filename='app.log', filemode='w',format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
-logging.info('Admin logged in')
-try:
-    print(x)
-except Exception as e:
-    print(e) 
-    # logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
-    # logging.info('Test LogInformation',e)
-    logging.error("%s",e)
-    logging.warning(e)
+# USB\VID_1BCF&PID_2A02\01.00.00
+# USB\ROOT_HUB30\4&29E0B25B&0&0
+# USB\VID_0781&PID_5571\4C530001281130122052
+# USB\ROOT_HUB30\4&365005&0&0
+
+# wmic logicaldisk where drivetype=2 get deviceid, volumename, description
+# Description     DeviceID  VolumeName
+# Removable Disk  E:        NIBBI
+
+# import usb.core
+# for dev in usb.core.find(find_all=True):
+#     print(dev)
+import os
+# os.system('wmic logicaldisk where drivetype=2 get deviceid, volumename, description')
+x = os.system('wmic logicaldisk where drivetype=2 get deviceid, volumename, description')
+print(x)
+x =os.getcwd()
+print(x)
+os.chdir('E:/')
+# os.system('cd..')
+x = os.system('dir')
+print(x)
